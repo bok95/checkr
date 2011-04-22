@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+  <head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/
+	ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script>
+      // Called when a message is passed.  We assume that the content script
+      // wants to show the page action.
+	  var array;
+      function onRequest(request, sender, sendResponse) {
+        // Show the page action for the tab that the sender (content script)
+        // was on.
+		array = request;
+		// console.log(request);
+        chrome.pageAction.show(sender.tab.id);
+
+        // Return nothing to let the connection be cleaned up.
+        sendResponse({});
+      };
+		function get_val(){
+			return array;
+		}
+		function test(){
+			alert("test func");
+		}
+
+      // Listen for the content script to send a message to the background page.
+      chrome.extension.onRequest.addListener(onRequest);
+    </script>
+  </head>
+</html>

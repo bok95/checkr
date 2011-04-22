@@ -1,0 +1,32 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/
+	ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript">
+	
+		$(document).ready(function(){
+      		var bkg = chrome.extension.getBackgroundPage();
+			var ebooks = JSON.parse(bkg.get_val());
+
+			for (var i in ebooks) {
+			  var src = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&choe=UTF-8&chl=" + ebooks[i].link;
+				var item = '<img src=' + src + '/>' +
+							'<span>' + ebooks[i].name + '</span>';
+				$('div#ebook').append(item);
+			}			
+		});
+</script>
+<style>
+body {
+/*  min-width:357px;*/
+  overflow-x:hidden;
+}
+
+img {
+  margin:5px;
+/*  border:2px solid black;*/
+  vertical-align:middle;
+  width:150px;
+  height:150px;
+}
+</style>
+
+<div id="ebook"></div>

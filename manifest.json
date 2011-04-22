@@ -1,0 +1,27 @@
+{
+  "name" : "QR Bookshelf",
+  "version" : "1.0",
+  "description" : "Shows a page action for HTML pages containing ebook file",
+  "background_page" : "background.html",
+  "page_action" :
+  {
+    "default_icon" : "ebook-19.png",
+    "default_title" : "There's a ebook in this page!",
+	"default_popup" : "popup.html"
+  },
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js" : ["jquery.js", "contentscript.js"],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+  "icons" : {
+    "48" : "ebook-48.png",
+    "128" : "ebook-128.png"
+  }
+}
